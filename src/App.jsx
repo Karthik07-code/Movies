@@ -4,6 +4,7 @@ import Favourites from "./pages/Favourites";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import { MovieProvider } from "./contexts/MovieContext";
+
 function App() {
   return (
     <>

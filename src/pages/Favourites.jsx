@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/Favourites.css";
-import { useMovieContext } from "../contexts/MovieContext";
 import MovieCard from "../components/MovieCard";
+import { MovieContext } from "../contexts/MovieContext";
 
 const Favourites = () => {
-  const { favorites } = useMovieContext();
-
+  const { favorites } = useContext(MovieContext);
   if (favorites) {
     return (
       <div className="movies-grid">

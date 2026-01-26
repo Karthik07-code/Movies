@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../styles/MovieCard.css";
-import { useMovieContext } from "../contexts/MovieContext";
+import { MovieContext } from "../contexts/MovieContext";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const MovieCard = ({ movie }) => {
-  const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
+  const { isFavorite, addToFavorites, removeFromFavorites } =
+    useContext(MovieContext);
   const fav = isFavorite(movie.id);
 
   const handleFavouriteClick = (e) => {
