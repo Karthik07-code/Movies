@@ -1,8 +1,29 @@
 .main-content {
   flex: 1;
-  padding: 2rem;
-  box-sizing: border-box;
   width: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Mobile Padding for Bottom Nav */
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: calc(var(--nav-height-mobile) + 20px);
+    padding-top: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Desktop Padding for Top Header */
+@media (min-width: 769px) {
+  .main-content {
+    padding-top: calc(var(--header-height-desktop) + 20px);
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
 }

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
+import SkeletonCard from "../components/SkeletonCard";
 import "../styles/Home.css";
 import { fetchPopularMovies, searchMovies } from "../services/api";
+import { BiSearch } from "react-icons/bi";
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,15 +11,12 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(movies);
-
   const handleSearch = async (e) => {
     e.preventDefault();
-    if (!searchQuery) return;
+    if (!searchQuery.trim()) return;
     if (loading) return;
 
     setLoading(true);
-
     try {
       const searchResults = await searchMovies(searchQuery);
       setMovies(searchResults);
@@ -28,14 +27,14 @@ const Home = () => {
     } finally {
       setLoading(false);
     }
-    // setSearchQuery("");
   };
 
   useEffect(() => {
-    const loadPopularMoives = async () => {
+    const loadPopularMovies = async () => {
+      setLoading(true);
       try {
-        const populaMovies = await fetchPopularMovies();
-        setMovies(populaMovies);
+        const popularMovies = await fetchPopularMovies();
+        setMovies(popularMovies);
       } catch (error) {
         console.log(error);
         setError("Failed to Load Movies...");
@@ -43,33 +42,49 @@ const Home = () => {
         setLoading(false);
       }
     };
-    loadPopularMoives();
+    loadPopularMovies();
   }, []);
+
   return (
-    <div>
-      <form className="search-form" onSubmit={handleSearch}>
-        <input
-          type="text"
-          placeholder="Search Movies"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-        />
-        <button type="submit" className="search-button ">
-          Search
-        </button>
-      </form>
-      <div className="home">
+    <div className="home-container">
+      {/* Search Header - Floating Glassmorphic */}
+      <section className="search-section">
+        <form className="search-form glass" onSubmit={handleSearch}>
+          <BiSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search for movies..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+          />
+        </form>
+      </section>
+
+      {/* Content Grid */}
+      <div className="home-content">
         {error && <p className="error-message">{error}</p>}
-        {movies.length === 0 && <p>No movies found</p>}
+
         {loading ? (
-          <p className="loading">Loading...</p>
-        ) : (
           <div className="movies-grid">
-            {movies.map((movie) => (
-              <MovieCard movie={movie} key={movie.id} />
+            {[...Array(10)].map((_, i) => (
+              <SkeletonCard key={i} />
             ))}
           </div>
+        ) : (
+          <>
+            {movies.length === 0 ? (
+              <div className="empty-search">
+                <p>No movies found matching your search.</p>
+              </div>
+            ) : (
+              <div className="movies-grid">
+                {movies.map((movie) => (
+                  <MovieCard movie={movie} key={movie.id} />
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
