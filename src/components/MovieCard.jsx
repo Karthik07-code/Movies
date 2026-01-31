@@ -10,7 +10,7 @@ const MovieCard = ({ movie }) => {
 
   const handleFavouriteClick = (e) => {
     e.preventDefault();
-    e.stopPropagation(); // Prevent card click if we add navigation later
+    e.stopPropagation(); // Prevent card click if I add navigation later
     if (fav) {
       removeFromFavorites(movie.id);
     } else {

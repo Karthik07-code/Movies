@@ -11,8 +11,6 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
-
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
@@ -22,7 +20,6 @@ const Home = () => {
     try {
       const searchResults = await searchMovies(searchQuery);
       setMovies(searchResults);
-      setError(null);
     } catch (error) {
       console.log(error);
       setError("Failed to Search Movies...");
@@ -35,8 +32,8 @@ const Home = () => {
     const loadPopularMovies = async () => {
       setLoading(true);
       try {
-        const popularMovies = await fetchPopularMovies();
-        setMovies(popularMovies);
+        const popularMovie = await fetchPopularMovies();
+        setMovies(popularMovie);
       } catch (error) {
         console.log(error);
         setError("Failed to Load Movies...");
@@ -65,14 +62,14 @@ const Home = () => {
 
       {/* Content Grid */}
       <div className="home-content">
-        {error && <p className="error-message">{error}</p>}
-
         {loading ? (
           <div className="movies-grid">
             {[...Array(10)].map((_, i) => (
               <SkeletonCard key={i} />
             ))}
           </div>
+        ) : error ? (
+          <p className="error-message">{error}</p>
         ) : (
           <>
             {movies.length === 0 ? (
@@ -81,9 +78,11 @@ const Home = () => {
               </div>
             ) : (
               <div className="movies-grid">
-                {movies.map((movie) => (
-                  <MovieCard movie={movie} key={movie.id} />
-                ))}
+                <>
+                  {movies.map((movie) => (
+                    <MovieCard movie={movie} key={movie.id} />
+                  ))}
+                </>
               </div>
             )}
           </>
