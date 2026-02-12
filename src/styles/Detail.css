@@ -1,0 +1,453 @@
+/* Series Detail Page */
+.detail-page {
+  position: relative;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background-color: var(--bg-dark);
+}
+
+/* Hero Section */
+.hero-limit {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.hero-backdrop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* opacity: 0.8; */
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0.3) 0%,
+    var(--bg-dark) 100%
+  );
+}
+
+/* Main Content Container */
+.detail-container {
+  position: relative;
+  max-width: 1200px;
+  margin: -200px auto 0;
+  padding: 0 24px 60px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Poster Card */
+.poster-card {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  position: sticky;
+  top: 100px;
+  transition: transform 0.3s ease;
+}
+
+.poster-card:hover {
+  transform: scale(1.02);
+}
+
+.poster-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Info Section */
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title-section h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  background: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 12px;
+}
+
+/* Meta Data Row (Rating, Year, Seasons) */
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 215, 0, 0.1);
+  color: #fbbf24;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* Genres */
+.genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.genre-badge {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  border: 1px solid var(--glass-border);
+  transition: all 0.2s;
+}
+
+.genre-badge:hover {
+  background: var(--accent-cyan);
+  color: #000;
+  border-color: var(--accent-cyan);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Overview */
+.overview-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.overview-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Details Grid */
+/* Details Grid */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 32px 24px;
+  background: rgba(30, 41, 59, 0.4);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  align-items: start;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-item h3 {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.detail-value {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.networks-list {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.network-logo {
+  height: auto;
+  width: 100px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.network-logo:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loading-box {
+  padding: 2rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Site Button */
+.site-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--accent-gradient);
+  color: white;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  margin-top: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.site-btn:hover {
+  opacity: 0.9;
+}
+
+/* Vote Count */
+.vote-count {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-left: 4px;
+}
+
+/* Cast Section */
+.cast-section {
+  margin-top: 40px;
+}
+
+.cast-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+/* Cast Grid (Responsive) */
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.cast-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  transition: transform 0.2s;
+}
+
+.cast-card:hover {
+  transform: translateY(-5px);
+}
+
+.cast-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cast-info {
+  padding: 10px;
+}
+
+.cast-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cast-character {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Production Companies & OTT */
+.full-width {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.production-company-logo {
+  height: 4rem;
+  width: 150px;
+  transition: all 0.3s;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.production-company-name {
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.production-company-logo:hover {
+  transform: translateY(-4px);
+  cursor: pointer;
+}
+
+.ott-list {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: var(--radius-md);
+}
+
+.ott-company {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ott-logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.ott-logo:hover {
+  transform: scale(1.1);
+}
+
+/* Trailer Section */
+.trailer-section {
+  margin-top: 60px;
+}
+
+.trailer-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .detail-container {
+    grid-template-columns: 1fr;
+    margin-top: -100px;
+    gap: 32px;
+  }
+
+  .poster-card {
+    max-width: 240px;
+    margin: 0 auto;
+    position: relative;
+    top: 0;
+  }
+
+  .title-section h1 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .meta-row,
+  .genre-list {
+    justify-content: center;
+  }
+
+  .info-section {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-limit {
+    height: 40vh;
+  }
+
+  .title-section h1 {
+    font-size: 2rem;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .production-list {
+    justify-content: center;
+  }
+}

@@ -10,7 +10,7 @@ const Favourites = () => {
     return (
       <div className="favorites-container">
         <h2 className="section-title">Your Collection</h2>
-        <div className="movies-grid mood-board">
+        <div className="media-grid mood-board">
           {favorites.map((movie, index) => (
             <div
               key={movie.id}

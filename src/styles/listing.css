@@ -1,5 +1,5 @@
 /* Home Container */
-.home-container {
+.listing-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -62,7 +62,7 @@
 }
 
 /* Movies Grid */
-.movies-grid {
+.media-grid {
   display: grid;
   /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
   grid-template-columns: repeat(5, 1fr);
@@ -96,7 +96,7 @@
     padding: 0 1rem;
   }
 
-  .movies-grid {
+  .media-grid {
     grid-template-columns: repeat(
       auto-fill,
       minmax(140px, 1fr)
@@ -106,7 +106,7 @@
 }
 
 /* @media (min-width: 1024px) {
-  .movies-grid {
+  .media-grid {
     grid-template-columns: repeat(5, 1fr);
   }
 } */

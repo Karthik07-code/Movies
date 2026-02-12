@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "../components/MovieCard";
 import SkeletonCard from "../components/SkeletonCard";
-import "../styles/Home.css";
+import "../styles/listing.css";
 import { fetchPopularMovies, searchMovies } from "../services/api";
 import { BiSearch } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
-const Home = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
-    if (loading) return;
 
     setLoading(true);
     try {
@@ -45,8 +45,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-container">
-      {/* Search Header - Floating Glassmorphic */}
+    <div className="listing-container">
+      {/* Floating Search bar */}
       <section className="search-section">
         <form className="search-form glass" onSubmit={handleSearch}>
           <BiSearch className="search-icon" />
@@ -61,9 +61,9 @@ const Home = () => {
       </section>
 
       {/* Content Grid */}
-      <div className="home-content">
+      <section>
         {loading ? (
-          <div className="movies-grid">
+          <div className="media-grid">
             {[...Array(10)].map((_, i) => (
               <SkeletonCard key={i} />
             ))}
@@ -77,19 +77,21 @@ const Home = () => {
                 <p>No movies found matching your search.</p>
               </div>
             ) : (
-              <div className="movies-grid">
+              <div className="media-grid">
                 <>
                   {movies.map((movie) => (
-                    <MovieCard movie={movie} key={movie.id} />
+                    <Link to={`/movies/${movie.id}`} key={movie.id}>
+                      <MovieCard movie={movie} />
+                    </Link>
                   ))}
                 </>
               </div>
             )}
           </>
         )}
-      </div>
+      </section>
     </div>
   );
 };
 
-export default Home;
+export default Movies;

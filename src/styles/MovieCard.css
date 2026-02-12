@@ -80,7 +80,8 @@
 
 .movie-info-overlay {
   color: white;
-  margin-bottom: 40px; /* Space for button if needed, or button can be absolute top-right */
+  /* Space for button if needed, or button can be absolute top-right */
+  margin-bottom: 40px;
 }
 
 .movie-info-overlay h3 {
