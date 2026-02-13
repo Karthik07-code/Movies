@@ -4,7 +4,6 @@ import { fetchSeriesDetail } from "../services/api";
 import "../styles/Detail.css";
 import { FaStar, FaCalendar, FaTv, FaPlay } from "react-icons/fa";
 import noImage from "../assets/no-image.jpg";
-import Slider from "../components/Slider";
 
 const SeriesDetail = () => {
   const { id } = useParams();

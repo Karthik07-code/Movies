@@ -91,16 +91,6 @@ const MoviesDetail = () => {
             alt={movies.title}
             className="poster-image"
           />
-          {/* {movies.homepage && (
-            <a
-              href={movies.homepage}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="site-btn"
-            >
-              <FaGlobe /> Visit Homepage
-            </a>
-          )} */}
         </div>
 
         {/* Right Column: Info */}

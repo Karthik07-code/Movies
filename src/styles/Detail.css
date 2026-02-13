@@ -231,26 +231,6 @@
   color: var(--text-primary);
 }
 
-/* Site Button */
-.site-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--accent-gradient);
-  color: white;
-  padding: 12px;
-  border-radius: var(--radius-md);
-  margin-top: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: opacity 0.2s;
-}
-
-.site-btn:hover {
-  opacity: 0.9;
-}
-
 /* Vote Count */
 .vote-count {
   font-size: 0.9rem;
@@ -440,10 +420,6 @@
   .details-grid {
     grid-template-columns: 1fr;
   }
-
-  .production-list {
-    justify-content: center;
-  }
 }
 
 /* slider */
@@ -453,14 +429,4 @@
 
 .mySwiper {
   padding: 10px 0 40px;
-}
-
-.swiper-image {
-  width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.swiper-image:hover {
-  transform: scale(1.05);
 }
