@@ -4,6 +4,7 @@ import { fetchSeriesDetail } from "../services/api";
 import "../styles/Detail.css";
 import { FaStar, FaCalendar, FaTv, FaPlay } from "react-icons/fa";
 import noImage from "../assets/no-image.jpg";
+import Slider from "../components/Slider";
 
 const SeriesDetail = () => {
   const { id } = useParams();
@@ -78,6 +79,7 @@ const SeriesDetail = () => {
             <h1>{series.name}</h1>
             {series.tagline && <p className="tagline">"{series.tagline}"</p>}
           </div>
+
           {/* Meta Data Row */}
           <div className="meta-row">
             <div className="rating-badge">
@@ -98,6 +100,7 @@ const SeriesDetail = () => {
               <span>{series.number_of_episodes} Episodes</span>
             </div>
           </div>
+
           {/* Genres */}
           <div className="genre-list">
             {series.genres?.map((genre) => (
@@ -106,17 +109,19 @@ const SeriesDetail = () => {
               </span>
             ))}
           </div>
+
           {/* Overview */}
           <div className="overview-section">
             <h2>Overview</h2>
             <p className="overview-text">{series.overview}</p>
           </div>
+
           {/* Top Cast (Responsive Grid) */}
           {series.credits?.cast?.length > 0 && (
             <div className="cast-section">
               <h2>Top Cast</h2>
               <div className="cast-grid">
-                {series.credits.cast.slice(0, 10).map((actor) => (
+                {series.credits.cast.slice(0, 5).map((actor) => (
                   <div key={actor.id} className="cast-card">
                     <img
                       src={
@@ -136,12 +141,13 @@ const SeriesDetail = () => {
               </div>
             </div>
           )}
+
           {/* Top crew (Responsive Grid) */}
           {series.credits?.crew?.length > 0 && (
             <div className="cast-section">
               <h2>Top Crew</h2>
               <div className="cast-grid">
-                {series.credits.crew.slice(0, 10).map((actor) => (
+                {series.credits.crew.slice(0, 5).map((actor) => (
                   <div key={actor.id} className="cast-card">
                     <img
                       src={
@@ -178,7 +184,7 @@ const SeriesDetail = () => {
             <div className="detail-item">
               <h3>Watch On</h3>
               <div className="networks-list">
-                {series.networks?.map((network) => (
+                {series.networks?.slice(0, 1).map((network) => (
                   <img
                     key={network.id}
                     src={`https://image.tmdb.org/t/p/w200${network.logo_path}`}
@@ -201,7 +207,7 @@ const SeriesDetail = () => {
             {/* Production */}
             <div className="detail-item">
               <h3>Production</h3>
-              <div className="detail-value">
+              <div>
                 {series.production_companies?.slice(0, 1).map((company) => (
                   <div key={company.id}>
                     <img

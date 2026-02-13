@@ -4,6 +4,7 @@ import { fetchMoviesDetail } from "../services/api";
 import "../styles/Detail.css";
 import { FaStar, FaCalendar, FaClock, FaGlobe } from "react-icons/fa";
 import noImage from "../assets/no-image.jpg";
+import Slider from "../components/Slider";
 
 const MoviesDetail = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const MoviesDetail = () => {
         // Find official trailer
         const officialTrailer = data.videos?.results?.find(
           (vid) => vid.type === "Trailer" && vid.site === "YouTube",
-        );        
+        );
         setTrailer(officialTrailer);
       } catch (error) {
         console.log(error);
@@ -147,14 +148,10 @@ const MoviesDetail = () => {
             <div className="cast-section">
               <h2>Top Cast</h2>
               <div className="cast-grid">
-                {movies.credits.cast.slice(0, 10).map((actor) => (
+                {movies.credits.cast.slice(0, 5).map((actor) => (
                   <div key={actor.id} className="cast-card">
                     <img
-                      src={
-                        actor.profile_path
-                          ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                          : noImage
-                      }
+                      src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
                       alt={actor.name}
                       className="cast-image"
                     />
@@ -173,7 +170,7 @@ const MoviesDetail = () => {
             <div className="cast-section">
               <h2>Top Crew</h2>
               <div className="cast-grid">
-                {movies.credits.crew.slice(0, 10).map((actor) => (
+                {movies.credits.crew.slice(0, 5).map((actor) => (
                   <div key={actor.id} className="cast-card">
                     <img
                       src={

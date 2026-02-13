@@ -5,6 +5,7 @@ import "../styles/listing.css";
 import { fetchPopularMovies, searchMovies } from "../services/api";
 import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Slider from "../components/Slider";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);

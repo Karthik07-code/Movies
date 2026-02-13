@@ -204,8 +204,8 @@
 }
 
 .network-logo {
-  height: auto;
-  width: 100px;
+  max-height: 60px;
+  max-width: 130px;
   opacity: 0.8;
   transition: all 0.3s ease;
 }
@@ -327,9 +327,8 @@
 }
 
 .production-company-logo {
-  height: 4rem;
-  width: 150px;
-  transition: all 0.3s;
+  max-height: 60px;
+  max-width: 130px;
   background: rgba(255, 255, 255, 0.2);
   padding: 10px;
   border-radius: 10px;
@@ -341,11 +340,6 @@
   background: rgba(255, 255, 255, 0.05);
   padding: 10px;
   border-radius: 10px;
-}
-
-.production-company-logo:hover {
-  transform: translateY(-4px);
-  cursor: pointer;
 }
 
 .ott-list {
@@ -450,4 +444,23 @@
   .production-list {
     justify-content: center;
   }
+}
+
+/* slider */
+.slider-section {
+  margin-top: 40px;
+}
+
+.mySwiper {
+  padding: 10px 0 40px;
+}
+
+.swiper-image {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.swiper-image:hover {
+  transform: scale(1.05);
 }
