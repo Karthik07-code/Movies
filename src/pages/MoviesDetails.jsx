@@ -4,7 +4,6 @@ import { fetchMoviesDetail } from "../services/api";
 import "../styles/Detail.css";
 import { FaStar, FaCalendar, FaClock, FaGlobe } from "react-icons/fa";
 import noImage from "../assets/no-image.jpg";
-import Slider from "../components/Slider";
 
 const MoviesDetail = () => {
   const { id } = useParams();

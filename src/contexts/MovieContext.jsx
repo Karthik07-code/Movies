@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 export const MovieContext = createContext();
 
@@ -17,10 +18,12 @@ export const MovieProvider = ({ children }) => {
 
   const addToFavorites = (movie) => {
     setFavorites((prev) => [...prev, movie]);
+    toast.success("Added to Favorites!", { id: "addToFavorites" });
   };
 
   const removeFromFavorites = (movieId) => {
     setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+    toast.success("Removed from Favorites", { id: "removeFromFavorites" });
   };
 
   const isFavorite = (movieId) => {

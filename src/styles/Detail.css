@@ -422,11 +422,25 @@
   }
 }
 
-/* slider */
-.slider-section {
-  margin-top: 40px;
+
+/* Site Button */
+.site-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--accent-gradient);
+  color: white;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  margin: 20px auto;
+  border: none;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-.mySwiper {
-  padding: 10px 0 40px;
+.site-btn:hover {
+  opacity: 0.9;
 }

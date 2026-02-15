@@ -3,47 +3,71 @@ import { fetchPopularSeries, searchSeries } from "../services/api";
 import "../styles/MovieCard.css";
 import SeriesCard from "../components/SeriesCard";
 import SkeletonCard from "../components/SkeletonCard";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
 
 const Series = () => {
   const [series, setSeries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = async (e) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") || "";
+  const [searchQuery, setSearchQuery] = useState(query);
+  const [page, setPage] = useState(1);
+
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (!searchQuery.trim()) return;
-    if (loading) return;
-
-    setLoading(true);
-
-    try {
-      const searchResults = await searchSeries(searchQuery);
-      setSeries(searchResults);
-    } catch (error) {
-      console.log(error);
-      setError("Failed to Search Series...");
-    } finally {
-      setLoading(false);
+    if (!searchQuery.trim()) {
+      setSearchParams({});
+      return;
     }
+    setSearchParams({ query: searchQuery });
+    setPage(1);
   };
 
+  // Sync Input with URL
   useEffect(() => {
-    const loadPopularSeries = async () => {
+    setSearchQuery(query);
+    setPage(1);
+  }, [query]);
+
+  useEffect(() => {
+    const loadSeries = async () => {
       setLoading(true);
+      setError(null);
       try {
-        const popularSeries = await fetchPopularSeries();
-        setSeries(popularSeries);
+        let newSeries = [];
+        if (query) {
+          newSeries = await searchSeries(query, page);
+        } else {
+          newSeries = await fetchPopularSeries(page);
+        }
+
+        if (page === 1) {
+          setSeries(newSeries);
+        } else {
+          setSeries((prev) => {
+            const existingIds = new Set(prev.map((s) => s.id));
+            const uniqueNewSeries = newSeries.filter(
+              (s) => !existingIds.has(s.id),
+            );
+            return [...prev, ...uniqueNewSeries];
+          });
+        }
       } catch (error) {
+        console.log(error);
         setError("Failed to Load Series...");
       } finally {
         setLoading(false);
       }
     };
-    loadPopularSeries();
-  }, []);
+    loadSeries();
+  }, [query, page]);
+
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <div className="listing-container">
@@ -61,28 +85,32 @@ const Series = () => {
         </form>
       </section>
       <section>
-        {loading ? (
-          <div className="media-grid">
-            {[...Array(10)].map((_, i) => (
-              <SkeletonCard key={i} />
-            ))}
+        <div className="media-grid">
+          {series.length === 0 && !loading && !error ? (
+            <p className="empty-search">No series found</p>
+          ) : (
+            <>
+              {series.map((item) => (
+                <Link to={`/series/${item.id}`} key={item.id}>
+                  <SeriesCard series={item} />
+                </Link>
+              ))}
+              {loading &&
+                [...Array(5)].map((_, i) => <SkeletonCard key={`skel-${i}`} />)}
+            </>
+          )}
+        </div>
+        {error && <p className="error-message">{error}</p>}
+
+        {!loading && series.length > 0 && (
+          <div
+            className="load-more-container"
+            style={{ textAlign: "center", padding: "2rem" }}
+          >
+            <button className="site-btn" onClick={handleLoadMore}>
+              Load More
+            </button>
           </div>
-        ) : error ? (
-          <p className="error-message">{error}</p>
-        ) : (
-          <>
-            {series.length === 0 ? (
-              <p className="empty-search">No series found</p>
-            ) : (
-              <div className="media-grid">
-                {series.map((item) => (
-                  <Link to={`/series/${item.id}`} key={item.id}>
-                    <SeriesCard series={item} />
-                  </Link>
-                ))}
-              </div>
-            )}
-          </>
         )}
       </section>
     </div>

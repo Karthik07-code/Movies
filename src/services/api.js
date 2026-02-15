@@ -1,23 +1,27 @@
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-export const fetchPopularMovies = async () => {
-  const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}`);
+export const fetchPopularMovies = async (page = 1) => {
+  const res = await fetch(
+    `${BASE_URL}/movie/popular?api_key=${API_KEY}&page=${page}`,
+  );
   const data = await res.json();
   return data.results;
 };
 
-export const searchMovies = async (query) => {
+export const searchMovies = async (query, page = 1) => {
   const res = await fetch(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`,
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`,
   );
 
   const data = await res.json();
   return data.results;
 };
 
-export const fetchPopularSeries = async () => {
-  const res = await fetch(`${BASE_URL}/trending/tv/day?api_key=${API_KEY}`);
+export const fetchPopularSeries = async (page = 1) => {
+  const res = await fetch(
+    `${BASE_URL}/trending/tv/day?api_key=${API_KEY}&page=${page}`,
+  );
   // const res = await fetch(`${BASE_URL}/discover/tv?api_key=${API_KEY}`);
   const data = await res.json();
   return data.results;
@@ -42,9 +46,9 @@ export const fetchMoviesDetail = async (id) => {
   return data;
 };
 
-export const searchSeries = async (query) => {
+export const searchSeries = async (query, page = 1) => {
   const res = await fetch(
-    `${BASE_URL}/search/tv?api_key=${API_KEY}&query=${query}`,
+    `${BASE_URL}/search/tv?api_key=${API_KEY}&query=${query}&page=${page}`,
   );
 
   const data = await res.json();

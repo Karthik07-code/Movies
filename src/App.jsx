@@ -8,6 +8,8 @@ import Series from "./pages/Series";
 import SeriesDetail from "./pages/SeriesDetail";
 import MoviesDetail from "./pages/MoviesDetails";
 
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <>
@@ -22,6 +24,15 @@ function App() {
             <Route path="/movies/:id" element={<MoviesDetail />} />
           </Routes>
         </main>
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          }}
+        />
       </MovieProvider>
     </>
   );
