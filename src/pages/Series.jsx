@@ -45,11 +45,11 @@ const Series = () => {
         }
 
         if (page === 1) {
-          setSeries(newSeries);
+          setSeries(Array.isArray(newSeries) ? newSeries : []);
         } else {
           setSeries((prev) => {
             const existingIds = new Set(prev.map((s) => s.id));
-            const uniqueNewSeries = newSeries.filter(
+            const uniqueNewSeries = (newSeries || []).filter(
               (s) => !existingIds.has(s.id),
             );
             return [...prev, ...uniqueNewSeries];
@@ -58,6 +58,7 @@ const Series = () => {
       } catch (error) {
         console.log(error);
         setError("Failed to Load Series...");
+        if (page === 1) setSeries([]);
       } finally {
         setLoading(false);
       }

@@ -45,11 +45,11 @@ const Movies = () => {
         }
 
         if (page === 1) {
-          setMovies(newMovies);
+          setMovies(Array.isArray(newMovies) ? newMovies : []);
         } else {
           setMovies((prev) => {
             const existingIds = new Set(prev.map((m) => m.id));
-            const uniqueNewMovies = newMovies.filter(
+            const uniqueNewMovies = (newMovies || []).filter(
               (m) => !existingIds.has(m.id),
             );
             return [...prev, ...uniqueNewMovies];
@@ -58,6 +58,7 @@ const Movies = () => {
       } catch (error) {
         console.log(error);
         setError("Failed to Load Movies...");
+        if (page === 1) setMovies([]);
       } finally {
         setLoading(false);
       }
@@ -68,6 +69,7 @@ const Movies = () => {
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
+  console.log(movies, "=====");
 
   return (
     <div className="listing-container">
