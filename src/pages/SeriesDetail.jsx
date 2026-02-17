@@ -125,7 +125,7 @@ const SeriesDetail = () => {
                     <img
                       src={
                         actor.profile_path
-                          ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                          ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
                           : noImage
                       }
                       alt={actor.name}
@@ -151,7 +151,7 @@ const SeriesDetail = () => {
                     <img
                       src={
                         actor.profile_path
-                          ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                          ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
                           : noImage
                       }
                       alt={actor.name}
@@ -186,7 +186,7 @@ const SeriesDetail = () => {
                 {series.networks?.slice(0, 1).map((network) => (
                   <img
                     key={network.id}
-                    src={`https://image.tmdb.org/t/p/w200${network.logo_path}`}
+                    src={`https://image.tmdb.org/t/p/w500${network.logo_path}`}
                     alt={network.name}
                     className="network-logo"
                     title={network.name}
@@ -211,7 +211,7 @@ const SeriesDetail = () => {
                   <div key={company.id}>
                     <img
                       className="production-company-logo"
-                      src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
+                      src={`https://image.tmdb.org/t/p/w500${company.logo_path}`}
                       alt={company.name}
                       title={company.name}
                     />

@@ -4,6 +4,8 @@ import { fetchMoviesDetail } from "../services/api";
 import "../styles/Detail.css";
 import { FaStar, FaCalendar, FaClock, FaGlobe } from "react-icons/fa";
 import noImage from "../assets/no-image.jpg";
+import noMovie from "../assets/no-movie.jpg";
+
 
 const MoviesDetail = () => {
   const { id } = useParams();
@@ -86,7 +88,7 @@ const MoviesDetail = () => {
         {/* Left Column: Poster */}
         <div className="poster-card">
           <img
-            src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`}
+            src={movies.poster_path ? `https://image.tmdb.org/t/p/w500${movies.poster_path}` : noMovie}
             alt={movies.title}
             className="poster-image"
           />
@@ -142,7 +144,7 @@ const MoviesDetail = () => {
                     <img
                       src={
                         actor.profile_path
-                          ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                          ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
                           : noImage
                       }
                       alt={actor.name}
@@ -168,7 +170,7 @@ const MoviesDetail = () => {
                     <img
                       src={
                         actor.profile_path
-                          ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                          ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
                           : noImage
                       }
                       alt={actor.name}
@@ -213,7 +215,7 @@ const MoviesDetail = () => {
                     {company.logo_path ? (
                       <img
                         className="production-company-logo"
-                        src={`https://image.tmdb.org/t/p/w200${company.logo_path}`}
+                        src={`https://image.tmdb.org/t/p/w500${company.logo_path}`}
                         alt={company.name}
                         title={company.name}
                       />
@@ -235,7 +237,7 @@ const MoviesDetail = () => {
                   {watchProviders.map((provider) => (
                     <div key={provider.provider_id} className="ott-company">
                       <img
-                        src={`https://image.tmdb.org/t/p/w200${provider.logo_path}`}
+                        src={`https://image.tmdb.org/t/p/w500${provider.logo_path}`}
                         alt={provider.provider_name}
                         className="ott-logo"
                         title={provider.provider_name}

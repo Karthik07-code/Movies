@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import "../styles/MovieCard.css";
 import { MovieContext } from "../contexts/MovieContext";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import noMovie from "../assets/no-movie.jpg";
+
 
 const MovieCard = ({ movie }) => {
   const { isFavorite, addToFavorites, removeFromFavorites } =
@@ -22,7 +24,7 @@ const MovieCard = ({ movie }) => {
     <div className="movie-card">
       <div className="movie-poster">
         <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : noMovie}
           alt={movie.title}
           loading="lazy"
         />
@@ -30,7 +32,7 @@ const MovieCard = ({ movie }) => {
           <div className="movie-info-overlay">
             <h3>{movie.title}</h3>
             <p>{movie.release_date?.split("-")[0]}</p>
-          </div>
+          </div>x
           <button
             className={`favourite-btn ${fav ? "active" : ""}`}
             onClick={handleFavouriteClick}
