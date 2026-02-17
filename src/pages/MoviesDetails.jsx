@@ -140,7 +140,11 @@ const MoviesDetail = () => {
                 {movies.credits.cast.slice(0, 5).map((actor) => (
                   <div key={actor.id} className="cast-card">
                     <img
-                      src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                      src={
+                        actor.profile_path
+                          ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                          : noImage
+                      }
                       alt={actor.name}
                       className="cast-image"
                     />

@@ -20,12 +20,7 @@ const NavBar = () => {
             <BiCameraMovie className="nav-icon" />
             <span className="nav-text">Movies</span>
           </Link>
-
-          <Link to="/" className="nav-link mobile-only">
-            <BiSearch className="nav-icon" />
-            <span className="nav-text">Search</span>
-          </Link>
-
+          
           <Link
             to="/series"
             className={`nav-link ${isActive("/series") ? "active" : ""}`}

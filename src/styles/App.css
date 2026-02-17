@@ -9,7 +9,9 @@
 /* Mobile Padding for Bottom Nav */
 @media (max-width: 768px) {
   .main-content {
-    padding-bottom: calc(var(--nav-height-mobile) + 20px);
+    padding-bottom: calc(
+      var(--nav-height-mobile) + 32px + max(16px, env(safe-area-inset-bottom))
+    );
     padding-top: 20px;
     padding-left: 16px;
     padding-right: 16px;
@@ -39,7 +41,9 @@
 }
 @media (max-width: 768px) {
   .main-content:has(.detail-page) {
-    padding-bottom: calc(var(--nav-height-mobile));
+    padding-bottom: calc(
+      var(--nav-height-mobile) + 32px + max(16px, env(safe-area-inset-bottom))
+    );
     max-width: 100% !important;
     padding-top: 0;
     padding-left: 0 !important;

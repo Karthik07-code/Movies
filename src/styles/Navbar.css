@@ -73,8 +73,9 @@
     top: auto;
     border-top: 1px solid var(--glass-border);
     border-bottom: none;
-    padding: 0;
-    height: var(--nav-height-mobile);
+    padding: 12px 0 max(16px, env(safe-area-inset-bottom)) 0;
+    height: auto;
+    min-height: var(--nav-height-mobile);
     background: var(--bg-card); /* Fallback */
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(16px);
