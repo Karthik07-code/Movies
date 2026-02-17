@@ -135,7 +135,14 @@
   color: white;
 }
 
-.favourite-btn.active {
-  color: #ef4444; /* Red heart */
-  background: rgba(255, 255, 255, 0.1);
+/* Mobile: Hide movie name overlay and remove gradient */
+@media (max-width: 768px) {
+  .movie-info-overlay {
+    display: none;
+  }
+
+  .movie-overlay {
+    background: transparent !important;
+  }
 }
+

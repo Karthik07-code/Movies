@@ -32,7 +32,7 @@ const MovieCard = ({ movie }) => {
           <div className="movie-info-overlay">
             <h3>{movie.title}</h3>
             <p>{movie.release_date?.split("-")[0]}</p>
-          </div>x
+          </div>
           <button
             className={`favourite-btn ${fav ? "active" : ""}`}
             onClick={handleFavouriteClick}
