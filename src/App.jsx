@@ -25,10 +25,11 @@ function App() {
           </Routes>
         </main>
         <Toaster
-          position="bottom-center"
+          position="top-center"
           toastOptions={{
+            duration: 1500,
             style: {
-              background: "#333",
+              background: "#1e293b",
               color: "#fff",
             },
           }}

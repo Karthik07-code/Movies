@@ -73,7 +73,7 @@
     top: auto;
     border-top: 1px solid var(--glass-border);
     border-bottom: none;
-    padding: 12px 0 max(16px, env(safe-area-inset-bottom)) 0;
+    /* padding: 12px 0 max(12px, env(safe-area-inset-bottom)) 0; */
     height: auto;
     min-height: var(--nav-height-mobile);
     background: var(--bg-card); /* Fallback */
