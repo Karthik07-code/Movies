@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "../styles/Favourites.css";
 import MovieCard from "../components/MovieCard";
+import SeriesCard from "../components/SeriesCard";
 import { MovieContext } from "../contexts/MovieContext";
 
 const Favourites = () => {
@@ -11,13 +12,17 @@ const Favourites = () => {
       <div className="favorites-container">
         <h2 className="section-title">Your Collection</h2>
         <div className="media-grid mood-board">
-          {favorites.map((movie, index) => (
+          {favorites.map((item, index) => (
             <div
-              key={movie.id}
+              key={item.id}
               className="mood-board-item"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <MovieCard movie={movie} />
+              {item.type === "series" ? (
+                <SeriesCard series={item} />
+              ) : (
+                <MovieCard movie={item} />
+              )}
             </div>
           ))}
         </div>

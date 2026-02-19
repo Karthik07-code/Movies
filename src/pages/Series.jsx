@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchPopularSeries, searchSeries } from "../services/api";
 import "../styles/MovieCard.css";
+import "../styles/listing.css";
 import SeriesCard from "../components/SeriesCard";
 import SkeletonCard from "../components/SkeletonCard";
 import { Link, useSearchParams } from "react-router-dom";
@@ -11,7 +12,7 @@ const Series = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-   const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query") || "";
   const [searchQuery, setSearchQuery] = useState(query);
   const [page, setPage] = useState(1);
@@ -91,8 +92,13 @@ const Series = () => {
             <p className="empty-search">No series found</p>
           ) : (
             <>
-              {series.map((item) => (
-                <Link to={`/series/${item.id}`} key={item.id}>
+              {series.map((item, index) => (
+                <Link
+                  to={`/series/${item.id}`}
+                  key={item.id}
+                  className="animate-card"
+                  style={{ animationDelay: `${(index % 20) * 0.05}s` }}
+                >
                   <SeriesCard series={item} />
                 </Link>
               ))}

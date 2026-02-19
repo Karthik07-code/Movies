@@ -16,18 +16,24 @@ export const MovieProvider = ({ children }) => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
-  const addToFavorites = (movie) => {
-    setFavorites((prev) => [...prev, movie]);
+  const addToFavorites = (movie, type = "movie") => {
+    setFavorites((prev) => [...prev, { ...movie, type }]);
     toast.success("Added to Favorites!", { id: "addToFavorites" });
   };
 
-  const removeFromFavorites = (movieId) => {
-    setFavorites((prev) => prev.filter((movie) => movie.id !== movieId));
+  const removeFromFavorites = (movieId, type = "movie") => {
+    setFavorites((prev) =>
+      prev.filter(
+        (item) => !(item.id === movieId && (item.type || "movie") === type),
+      ),
+    );
     toast.success("Removed from Favorites", { id: "removeFromFavorites" });
   };
 
-  const isFavorite = (movieId) => {
-    return favorites.some((movie) => movie.id === movieId);
+  const isFavorite = (movieId, type = "movie") => {
+    return favorites.some(
+      (item) => item.id === movieId && (item.type || "movie") === type,
+    );
   };
 
   const value = {

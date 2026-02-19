@@ -96,8 +96,13 @@ const Movies = () => {
             </div>
           ) : (
             <>
-              {movies.map((movie) => (
-                <Link to={`/movies/${movie.id}`} key={movie.id}>
+              {movies.map((movie, index) => (
+                <Link
+                  to={`/movies/${movie.id}`}
+                  key={movie.id}
+                  className="animate-card"
+                  style={{ animationDelay: `${(index % 20) * 0.05}s` }}
+                >
                   <MovieCard movie={movie} />
                 </Link>
               ))}
